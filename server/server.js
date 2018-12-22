@@ -27,8 +27,18 @@ io.on('connection', (client) => {
     client.on('disconnect', () => {
         console.log('User disconnected');
     });
-    client.on('sendMessage', (message) => {
-        console.log(message);
+    // Listening the client
+    client.on('sendMessage', (message, callback) => {
+        // console.log(message);
+        if (message.user) {
+            callback({
+                resp: 'Good!'
+            });
+        } else {
+            callback({
+                resp: 'Bad!'
+            });
+        }
     });
 
 });
