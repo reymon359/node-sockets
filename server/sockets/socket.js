@@ -13,17 +13,19 @@ io.on('connection', (client) => {
         console.log('User disconnected');
     });
     // Listening the client
-    client.on('sendMessage', (message, callback) => {
-        // console.log(message);
-        if (message.user) {
-            callback({
-                resp: 'Good!'
-            });
-        } else {
-            callback({
-                resp: 'Bad!'
-            });
-        }
+    client.on('sendMessage', (data, callback) => {
+        console.log(data);
+        // To emit the info to everyone we use broadcast
+        client.broadcast.emit('sendMessage', data);
+        // if (message.user) {
+        //     callback({
+        //         resp: 'Good!'
+        //     });
+        // } else {
+        //     callback({
+        //         resp: 'Bad!'
+        //     });
+        // }
     });
 
 });
