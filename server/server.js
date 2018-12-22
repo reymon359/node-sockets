@@ -16,6 +16,11 @@ app.use(express.static(publicPath));
 // IO is the backend communication  
 let io = socketIO(server);
 
+// To know when an user (client) connects to the server
+io.on('connection', (client) => {
+    console.log('user connected');
+});
+
 server.listen(port, (err) => {
 
     if (err) throw new Error(err);
