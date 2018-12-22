@@ -18,7 +18,12 @@ let io = socketIO(server);
 
 // To know when an user (client) connects to the server
 io.on('connection', (client) => {
-    console.log('user connected');
+    console.log('User connected');
+
+    // To know if the client disconnects from the server
+    client.on('disconnect', () => {
+        console.log('User disconnected');
+    });
 });
 
 server.listen(port, (err) => {
